@@ -13,9 +13,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var tabBarController = UITabBarController()
+    var tabIcon = UIImage()
+    var tabIconSelected = UIImage()
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    {
+
+        let onePage = MainTVC()
+        let onePageNav = UINavigationController(rootViewController: onePage)
+        onePage.tabBarItem =
+        UITabBarItem(title: "第一頁", image: UIImage(named: "001"), selectedImage: UIImage(named: "001"))
+        
+        
+        
+        let allControllers = [onePageNav]
+        tabBarController.viewControllers = allControllers
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = tabBarController
+        self.window?.makeKeyAndVisible()
+        
+        
         return true
     }
 
