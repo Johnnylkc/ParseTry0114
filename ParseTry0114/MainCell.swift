@@ -24,20 +24,40 @@ class MainCell: UITableViewCell {
         classImage.layer.cornerRadius = 5
         contentView.addSubview(classImage)
         
-        className.frame = CGRectMake(140, 10, 220, 13)
+        className.frame = CGRectMake(140, 10, 220, 15)
         //className.backgroundColor = UIColor.grayColor()
-        className.font = UIFont.systemFontOfSize(13)
+        className.font = UIFont.systemFontOfSize(15)
         contentView.addSubview(className)
         
         
         
-        
+        autoLayout()
+
         
     }
 
     
-    func autuLayout()
+    func autoLayout()
     {
+        classImage.translatesAutoresizingMaskIntoConstraints = (false)
+        className.translatesAutoresizingMaskIntoConstraints = (false)
+        
+        let dic = ["classImage":classImage,"className":className]
+        
+        //classImage
+        let classImageH = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[classImage(120)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dic)
+        self.contentView.addConstraints(classImageH)
+        
+        let classImageV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-10-[classImage]-10-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dic)
+        self.contentView.addConstraints(classImageV)
+        
+        //className
+        let classNameH = NSLayoutConstraint.constraintsWithVisualFormat("H:[classImage]-10-[className]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dic)
+        self.contentView.addConstraints(classNameH)
+        
+        let classNameV = NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[className(15)]", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: dic)
+        self.contentView.addConstraints(classNameV)
+        
         
         
     }
